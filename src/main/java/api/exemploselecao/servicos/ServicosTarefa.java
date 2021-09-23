@@ -49,5 +49,49 @@ public class ServicosTarefa {
 		
 		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
 	}
+	
+	
+	public Tarefa atualizaTarefa(Long id, TarefaDto tarefaDto, String header)  throws ServletException, ParseException{
+		
+		String emailSujeito = servicoJWT.getSujeitoDoToken(header);
+		
+		
+		if(!emailSujeito.isEmpty()) {
+			
+			Tarefa tarefa = repositorioTarefa.getById(id);
+			tarefa.setTitulo(tarefaDto.getTitulo());
+			tarefa.setDescricao(tarefaDto.getDescricao());
+			tarefa.setResponsavel(tarefaDto.getResponsavel());
+			tarefa.setPrioridade(tarefaDto.getPrioridade());
+			tarefa.setDeadLine(tarefaDto.getDeadLine());
+			
+			repositorioTarefa.save(tarefa);
+			
+			return tarefa;	
+			
+		}
+		
+		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+	}
+
+	
+	
+	public Tarefa apagaTarefa(Long id, String header)  throws ServletException, ParseException{
+		
+		String emailSujeito = servicoJWT.getSujeitoDoToken(header);
+		
+		
+		if(!emailSujeito.isEmpty()) {
+			
+			Tarefa tarefa = repositorioTarefa.getById(id);
+			repositorioTarefa.delete(tarefa);
+			
+			return tarefa;
+					
+		}
+		
+		
+		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+	}
 
 }
