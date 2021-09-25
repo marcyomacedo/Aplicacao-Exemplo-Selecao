@@ -1,6 +1,7 @@
 package api.exemploselecao.servicos;
 
 import java.text.ParseException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -40,6 +41,7 @@ public class ServicosTarefa {
 			tarefa.setResponsavel(tarefaDto.getResponsavel());
 			tarefa.setPrioridade(tarefaDto.getPrioridade());
 			tarefa.setDeadLine(tarefaDto.getDeadLine());
+			tarefa.setSituacao(tarefaDto.getSituacao());
 			
 			repositorioTarefa.save(tarefa);
 			
@@ -64,6 +66,7 @@ public class ServicosTarefa {
 			tarefa.setResponsavel(tarefaDto.getResponsavel());
 			tarefa.setPrioridade(tarefaDto.getPrioridade());
 			tarefa.setDeadLine(tarefaDto.getDeadLine());
+			tarefa.setSituacao(tarefaDto.getSituacao());
 			
 			repositorioTarefa.save(tarefa);
 			
@@ -92,6 +95,12 @@ public class ServicosTarefa {
 		
 		
 		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+	}
+	
+	
+	public List<Tarefa> pesquisaTarefaTituloDescricao(){	
+		
+		
 	}
 
 }

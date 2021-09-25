@@ -11,6 +11,10 @@ public class TarefaDto {
 	private String responsavel;
 	private String prioridade;
 	private String deadLine;
+	private String situacao;
+	
+	
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -44,6 +48,13 @@ public class TarefaDto {
 	}
 	public void setDeadLine(String deadLine) {
 		this.deadLine = deadLine;
+	}	
+	
+	public String getSituacao() {
+		return situacao;
+	}
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 	public TarefaDto() {
 		super();

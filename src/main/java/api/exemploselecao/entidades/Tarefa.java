@@ -21,6 +21,7 @@ public class Tarefa {
 	private String responsavel;
 	private String prioridade;
 	private Date deadLine;
+	private String situacao;
 	
 
 
@@ -89,6 +90,20 @@ public class Tarefa {
 	public void setDeadLine(Date deadLine) {
 		this.deadLine = deadLine;
 	}
+
+
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+
+
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+
 
 
 
