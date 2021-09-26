@@ -11,7 +11,7 @@ public class TarefaDto {
 	private String responsavel;
 	private String prioridade;
 	private String deadLine;
-	private String situacao;
+	
 	
 	
 	
@@ -50,12 +50,6 @@ public class TarefaDto {
 		this.deadLine = deadLine;
 	}	
 	
-	public String getSituacao() {
-		return situacao;
-	}
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
-	}
 	public TarefaDto() {
 		super();
 		// TODO Auto-generated constructor stub

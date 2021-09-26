@@ -21,7 +21,7 @@ public class Tarefa {
 	private String responsavel;
 	private String prioridade;
 	private Date deadLine;
-	private String situacao;
+	private String situacao = "Em andamento";
 	
 
 

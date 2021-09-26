@@ -10,9 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import api.exemploselecao.dtos.PesquisaDto;
+import api.exemploselecao.dtos.PesquisaNDto;
 import api.exemploselecao.dtos.TarefaDto;
 import api.exemploselecao.entidades.Tarefa;
-import api.exemploselecao.entidades.Usuario;
 import api.exemploselecao.repositorios.TarefaDAO;
 import api.exemploselecao.repositorios.UsuarioDAO;
 
@@ -22,8 +23,6 @@ public class ServicosTarefa {
 	
 	@Autowired
 	private TarefaDAO repositorioTarefa;
-	@Autowired
-	private UsuarioDAO repositorioUsuario;
 	@Autowired
 	private ServicoJWT servicoJWT;
 	
@@ -41,7 +40,6 @@ public class ServicosTarefa {
 			tarefa.setResponsavel(tarefaDto.getResponsavel());
 			tarefa.setPrioridade(tarefaDto.getPrioridade());
 			tarefa.setDeadLine(tarefaDto.getDeadLine());
-			tarefa.setSituacao(tarefaDto.getSituacao());
 			
 			repositorioTarefa.save(tarefa);
 			
@@ -66,7 +64,6 @@ public class ServicosTarefa {
 			tarefa.setResponsavel(tarefaDto.getResponsavel());
 			tarefa.setPrioridade(tarefaDto.getPrioridade());
 			tarefa.setDeadLine(tarefaDto.getDeadLine());
-			tarefa.setSituacao(tarefaDto.getSituacao());
 			
 			repositorioTarefa.save(tarefa);
 			
@@ -98,9 +95,60 @@ public class ServicosTarefa {
 	}
 	
 	
-	public List<Tarefa> pesquisaTarefaTituloDescricao(){	
+	public List<Tarefa> pesquisaTarefaTituloDescricao(PesquisaDto pesquisa){
+		
+		String texto = pesquisa.getTexto();
+		
+		List<Tarefa> tarefaT = repositorioTarefa.findByTituloContaining(texto);
+		List<Tarefa> tarefaD = repositorioTarefa.findByDescricaoContaining(texto);
+		
+		List<Tarefa> resultados = tarefaT;
+		resultados.addAll(tarefaD);
+		
+		return resultados;
 		
 		
 	}
+	
+	public List<Tarefa> pesquisaTarefaSitucao(PesquisaDto pesquisa){
+		
+		String texto = pesquisa.getTexto();
+		
+		List<Tarefa> resultado = repositorioTarefa.findBySituacao(texto);
+		
+		return resultado;		
+		
+	}
+	
+	public List<Tarefa> pesquisaTarefaResposavel(PesquisaDto pesquisa){
+		
+		String texto = pesquisa.getTexto();
+		
+		List<Tarefa> resultado = repositorioTarefa.findByResponsavel(texto);
+		
+		return resultado;
+	}
+	
+	public Tarefa pesquisaTarefaNumero(PesquisaNDto numero){
+		
+		Long id = numero.getNumero();
+		
+		Tarefa resultado = repositorioTarefa.getById(id);
+		
+		return resultado;
+	}
+	
+	public Tarefa concluiTarefa(PesquisaNDto numero) {
+		
+		Long id = numero.getNumero();
+		
+		Tarefa tarefa = repositorioTarefa.getById(id);
+		
+		tarefa.setSituacao("Concluída");
+		
+		return tarefa;
+	}
+	
+	
 
 }
