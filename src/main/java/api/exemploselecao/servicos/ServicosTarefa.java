@@ -11,11 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import api.exemploselecao.dtos.PesquisaDto;
-import api.exemploselecao.dtos.PesquisaNDto;
 import api.exemploselecao.dtos.TarefaDto;
 import api.exemploselecao.entidades.Tarefa;
 import api.exemploselecao.repositorios.TarefaDAO;
-import api.exemploselecao.repositorios.UsuarioDAO;
 
 
 @Service
@@ -129,24 +127,29 @@ public class ServicosTarefa {
 		return resultado;
 	}
 	
-	public Tarefa pesquisaTarefaNumero(PesquisaNDto numero){
-		
-		Long id = numero.getNumero();
+	public Tarefa pesquisaTarefaNumero(Long id){
 		
 		Tarefa resultado = repositorioTarefa.getById(id);
 		
 		return resultado;
 	}
 	
-	public Tarefa concluiTarefa(PesquisaNDto numero) {
+	public Tarefa concluiTarefa(Long id, String header) {
 		
-		Long id = numero.getNumero();
+		String emailSujeito = servicoJWT.getSujeitoDoToken(header);
 		
-		Tarefa tarefa = repositorioTarefa.getById(id);
 		
-		tarefa.setSituacao("Concluída");
+		if(!emailSujeito.isEmpty()) {
+			
+			Tarefa tarefa = repositorioTarefa.getById(id);
+			
+			tarefa.setSituacao("Concluída");
+			
+			return tarefa;
+		}
 		
-		return tarefa;
+		throw new HttpClientErrorException(HttpStatus.FORBIDDEN);		
+		
 	}
 	
 	

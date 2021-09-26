@@ -6,7 +6,6 @@ public class UsuarioDto {
 	private String email;	
 	private String nome;
 	private String ultimoNome;
-	private Long numeroCartao;
 	private String senha;
 	
 	
@@ -28,12 +27,7 @@ public class UsuarioDto {
 	public void setUltimoNome(String ultimoNome) {
 		this.ultimoNome = ultimoNome;
 	}
-	public Long getNumeroCartao() {
-		return numeroCartao;
-	}
-	public void setNumeroCartao(Long numeroCartao) {
-		this.numeroCartao = numeroCartao;
-	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -44,14 +38,7 @@ public class UsuarioDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UsuarioDto(String email, String nome, String ultimoNome, Long numeroCartao, String senha) {
-		super();
-		this.email = email;
-		this.nome = nome;
-		this.ultimoNome = ultimoNome;
-		this.numeroCartao = numeroCartao;
-		this.senha = senha;
-	}
+
 	
 	
 
