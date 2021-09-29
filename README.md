@@ -33,9 +33,7 @@
 * **Delete(/v1/api/tarefa/{id})**
 
   Método para apagar uma tarefa.
-  
-  Link para importar uma coleção com os métodos acima no Postman: https://www.getpostman.com/collections/615d3174a8afdbfc7663
-  
+    
 * **Get(/v1/api/tarefa/titulo-descricao)**
 
   Método para encontrar uma lista de tarefas pelo titulo/descrição.
@@ -51,4 +49,8 @@
 * **Get(/v1/api/tarefa/{id})**
 
   Método para encontrar uma tarefa pelo número dela.
+  
+  
+  
+  Link para importar uma coleção com os métodos acima no Postman: https://www.getpostman.com/collections/615d3174a8afdbfc7663
  
